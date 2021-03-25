@@ -17,6 +17,7 @@ MAX_DAY_NUMBER = 12
 
 MAX_RACE_NUMBER = 12
 
+
 class RaceTrac(Enum):
     HOKKAIDO = 1
     HAKODATE = 2
@@ -28,6 +29,7 @@ class RaceTrac(Enum):
     KYOTO = 8
     HANSHIN = 9
     KOKURA = 10
+
 
 @dataclass
 class Race:
