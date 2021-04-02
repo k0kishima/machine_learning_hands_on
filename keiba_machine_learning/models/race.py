@@ -38,10 +38,3 @@ class Race:
     series_number: int = Field(ge=1, le=MAX_SERIES_NUMBER)
     day_number: int = Field(ge=1, le=MAX_DAY_NUMBER)
     race_number: int = Field(ge=1, le=MAX_RACE_NUMBER)
-
-    def __hash__(self) -> int:
-        return int(f'{self.year}{self.race_track.value:02d}{self.series_number:02d}{self.day_number:02d}{self.race_number:02d}')
-
-    @property
-    def id(self) -> int:
-        return self.__hash__()
