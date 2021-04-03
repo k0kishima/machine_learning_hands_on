@@ -5,6 +5,14 @@ import datetime
 
 
 class RaceTrac(Enum):
+    """競馬場に対応するモデル
+
+        東京競馬場・阪神競馬場など
+        全10場が個々のオブジェクトに対応
+
+    Args:
+        Enum (Emum): Enumを継承
+    """
     HOKKAIDO = 1
     HAKODATE = 2
     FUKUSHIMA = 3
@@ -19,6 +27,11 @@ class RaceTrac(Enum):
 
 @dataclass
 class Race:
+    """レースのモデル
+
+        必要最低限の属性のみを保持したレースの基底モデル
+
+    """
     # ブラウザURL直打ちして2着以下も取得できた年を暫定的に指定
     # 1985年はページ自体は閲覧できるが1着しか見れない（ログインすれば見れる旨は記載されていた）
     OLDEST_READABLE_YEAR = 1986

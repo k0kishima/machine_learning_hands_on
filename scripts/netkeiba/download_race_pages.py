@@ -1,3 +1,15 @@
+"""netkeibaからレースファイルをダウンロードするスクリプト
+
+    例えば以下のURLのようなものがレースファイルである
+    https://db.netkeiba.com/race/201901010101
+
+    netkeiba側の仕様でレースデータが存在しないページにアクセスしても404をHTTPステータスコードとしてレスポンスしないので、
+    ここでは内容を気にせず保存を行う
+    (データが存在しないことによる異常の処理はパーサーの責務とする)
+
+    実行時はパスを通すこと
+    export PYTHONPATH=".:$PYTHONPATH"
+"""
 import os
 import time
 import urllib.request

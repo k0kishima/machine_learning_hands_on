@@ -5,6 +5,14 @@ from keiba_machine_learning.netkeiba.constants import DATABASE_PAGE_BASE_URL, RA
 
 
 class Race(Base):
+    """netkeibaでのレースモデル
+
+        サービス側でのID付与規則やファイル保存場所などのドメイン知識を持つ
+
+    Args:
+        Base (Race): 基底モデルを継承
+    """
+
     def __hash__(self) -> int:
         return int(f'{self.year}{self.race_track.value:02d}{self.series_number:02d}{self.day_number:02d}{self.race_number:02d}')
 
