@@ -1,6 +1,6 @@
 import os
 from typing import IO
-from keiba_machine_learning.models.race import Race as Base
+from keiba_machine_learning.models import Race as Base
 from keiba_machine_learning.netkeiba.constants import DATABASE_PAGE_BASE_URL, RACE_DATA_DIR
 
 

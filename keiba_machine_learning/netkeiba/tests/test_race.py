@@ -1,5 +1,5 @@
-from keiba_machine_learning.models.race import RaceTrac
-from keiba_machine_learning.netkeiba.models.race import Race
+from keiba_machine_learning.models import RaceTrac
+from keiba_machine_learning.netkeiba.models import Race
 
 
 def test_identifier():
