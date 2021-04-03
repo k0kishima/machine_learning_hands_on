@@ -1,6 +1,7 @@
+import os
 from typing import IO
 from keiba_machine_learning.models.race import Race as Base
-from keiba_machine_learning.netkeiba.constants import DATABASE_PAGE_BASE_URL
+from keiba_machine_learning.netkeiba.constants import DATABASE_PAGE_BASE_URL, RACE_DATA_DIR
 
 
 class Race(Base):
@@ -15,3 +16,11 @@ class Race(Base):
     def url(self) -> str:
         return '/'.join([str(url_parts)
                          for url_parts in [DATABASE_PAGE_BASE_URL, "race", self.id]])
+
+    @property
+    def file_path(self) -> str:
+        return os.path.join(RACE_DATA_DIR, f'{self.id}.html')
+
+    @property
+    def file(self) -> IO:
+        return open(self.file_path, mode='r')
