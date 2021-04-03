@@ -67,3 +67,16 @@ class Weather(Enum):
     LIGHT_RAIN = 4
     LIGHT_SNOWY = 5
     SNOWY = 6
+
+
+class TrackKind(Enum):
+    """競走種別に対応するモデル
+
+        芝 | ダート　｜ 障害　
+
+    Args:
+        Enum (Emum): Enumを継承
+    """
+    GRASS = 1
+    DIRT = 2
+    JUMP = 3
