@@ -80,3 +80,17 @@ class TrackKind(Enum):
     GRASS = 1
     DIRT = 2
     JUMP = 3
+
+
+class TrackSurface(Enum):
+    """馬場状態に対応するモデル
+
+        良　稍重　重　不良　
+
+    Args:
+        Enum (Emum): Enumを継承
+    """
+    GOOD_TO_FIRM = 1
+    GOOD = 2
+    YIELDING = 3
+    SOFT = 4
