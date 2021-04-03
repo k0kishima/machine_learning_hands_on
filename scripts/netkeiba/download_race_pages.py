@@ -3,15 +3,27 @@
     例えば以下のURLのようなものがレースファイルである
     https://db.netkeiba.com/race/201901010101
 
+    このスクリプトでは指定された年のレースのファイルを全てダウンロードする
+
     netkeiba側の仕様でレースデータが存在しないページにアクセスしても404をHTTPステータスコードとしてレスポンスしないので、
     ここでは内容を気にせず保存を行う
     (データが存在しないことによる異常の処理はパーサーの責務とする)
 
-    実行時はパスを通すこと
-    export PYTHONPATH=".:$PYTHONPATH"
+
+    Args:
+        year (int): コマンドライン引数としてダウンロード対象とするレースが開催された年を指定する
+
+    Examples:
+        ※ 実行時はパスを通すこと
+        ※ 以下はコマンドライン上にて
+
+        source venv/bin/activate
+        export PYTHONPATH=".:$PYTHONPATH"
+        python scripts/netkeiba/download_race_pages.py 2019
 """
 import os
 import time
+import sys
 import urllib.request
 from tqdm import tqdm
 
@@ -22,7 +34,8 @@ from keiba_machine_learning.netkeiba.models.race import Race
 
 os.makedirs(RACE_DATA_DIR, exist_ok=True)
 
-YEAR = 2019
+args = sys.argv
+YEAR = int(args[1])
 
 races = []
 for race_track in RaceTrac:
