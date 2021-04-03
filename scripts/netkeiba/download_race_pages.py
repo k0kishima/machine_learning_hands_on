@@ -28,8 +28,8 @@ import urllib.request
 from tqdm import tqdm
 
 from keiba_machine_learning.netkeiba.constants import RACE_DATA_DIR
-from keiba_machine_learning.models.race import RaceTrac
-from keiba_machine_learning.netkeiba.models.race import Race
+from keiba_machine_learning.models import RaceTrac
+from keiba_machine_learning.netkeiba.models import Race
 
 
 os.makedirs(RACE_DATA_DIR, exist_ok=True)
