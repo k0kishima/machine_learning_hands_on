@@ -51,3 +51,19 @@ class Race:
     series_number: int = Field(ge=1, le=MAX_SERIES_NUMBER)
     day_number: int = Field(ge=1, le=MAX_DAY_NUMBER)
     race_number: int = Field(ge=1, le=MAX_RACE_NUMBER)
+
+
+class Weather(Enum):
+    """天候に対応するモデル
+
+        曇 | 晴 | 雨 | 小雨 | 小雪 | 雪
+
+    Args:
+        Enum (Emum): Enumを継承
+    """
+    CLOUDY = 1
+    SUNNY = 2
+    RAINY = 3
+    LIGHT_RAIN = 4
+    LIGHT_SNOWY = 5
+    SNOWY = 6
