@@ -51,3 +51,56 @@ class Race:
     series_number: int = Field(ge=1, le=MAX_SERIES_NUMBER)
     day_number: int = Field(ge=1, le=MAX_DAY_NUMBER)
     race_number: int = Field(ge=1, le=MAX_RACE_NUMBER)
+
+
+class Weather(Enum):
+    """天候に対応するモデル
+
+        曇 | 晴 | 雨 | 小雨 | 小雪 | 雪
+
+    Args:
+        Enum (Emum): Enumを継承
+    """
+    CLOUDY = 1
+    SUNNY = 2
+    RAINY = 3
+    LIGHT_RAIN = 4
+    LIGHT_SNOWY = 5
+    SNOWY = 6
+
+
+class TrackDirection(Enum):
+    """右回りか左回りかを保持するモデル
+
+    Args:
+        Enum (Emum): Enumを継承
+    """
+    LEFT = 1
+    RIGHT = 2
+
+
+class TrackKind(Enum):
+    """競走種別に対応するモデル
+
+        芝 | ダート　｜ 障害　
+
+    Args:
+        Enum (Emum): Enumを継承
+    """
+    GRASS = 1
+    DIRT = 2
+    JUMP = 3
+
+
+class TrackSurface(Enum):
+    """馬場状態に対応するモデル
+
+        良　稍重　重　不良　
+
+    Args:
+        Enum (Emum): Enumを継承
+    """
+    GOOD_TO_FIRM = 1
+    GOOD = 2
+    YIELDING = 3
+    SOFT = 4
