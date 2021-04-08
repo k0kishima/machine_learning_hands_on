@@ -69,6 +69,16 @@ class Weather(Enum):
     SNOWY = 6
 
 
+class TrackDirection(Enum):
+    """右回りか左回りかを保持するモデル
+
+    Args:
+        Enum (Emum): Enumを継承
+    """
+    LEFT = 1
+    RIGHT = 2
+
+
 class TrackKind(Enum):
     """競走種別に対応するモデル
 
