@@ -1,7 +1,7 @@
 import os
 from typing import IO
 from keiba_machine_learning.models import Race as Base
-from keiba_machine_learning.netkeiba.constants import DATABASE_PAGE_BASE_URL, RACE_DATA_DIR
+from keiba_machine_learning.netkeiba.constants import DATABASE_PAGE_BASE_URL, RACE_DATA_DIR, ENCODING_OF_WEB_PAGE
 
 
 class Race(Base):
@@ -31,4 +31,4 @@ class Race(Base):
 
     @property
     def file(self) -> IO:
-        return open(self.file_path, mode='r')
+        return open(self.file_path, mode='r', encoding=ENCODING_OF_WEB_PAGE)
