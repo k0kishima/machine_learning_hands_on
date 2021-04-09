@@ -79,12 +79,26 @@ class Weather(Enum):
     Args:
         Enum (Emum): Enumを継承
     """
-    CLOUDY = 1
-    SUNNY = 2
-    RAINY = 3
+    CLOUD = 1
+    FINE = 2
+    RAIY = 3
     LIGHT_RAIN = 4
-    LIGHT_SNOWY = 5
-    SNOWY = 6
+    LIGHT_SNOW = 5
+    SNOW = 6
+
+
+class WeatherFactory:
+    @staticmethod
+    def create(weather_name: str) -> Weather:
+        NAMES_INDEXED_BY_MARK_STR = {
+            '曇': 'CLOUD',
+            '晴': 'FINE',
+            '雨': 'RAINY',
+            '小雨': 'LIGHT_RAIN',
+            '小雪': 'LIGHT_SNOW',
+            '雪': 'SNOW',
+        }
+        return Weather[NAMES_INDEXED_BY_MARK_STR[weather_name]]
 
 
 class TrackDirection(Enum):
