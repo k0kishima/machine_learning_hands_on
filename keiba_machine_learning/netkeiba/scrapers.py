@@ -12,6 +12,7 @@ from keiba_machine_learning.models import RaceTrac, TrackKind, TrackDirection, T
 
 
 class RaceInformation(TypedDict):
+    """レース情報をスクレイピングした結果として返すべき dict の構造を定義するクラス"""
     title: str
     race_track: RaceTrac
     track_kind: TrackKind
@@ -26,6 +27,13 @@ class RaceInformation(TypedDict):
 class RaceInformationScraper:
     @staticmethod
     def scrape(file: IO) -> RaceInformation:
+        """
+        Args:
+            file (IO): netkeibaのレース結果ページのHTMLファイルを想定している
+
+        Returns:
+            RaceInformation: スクレイピング結果を返す
+        """
         soup = BeautifulSoup(file, 'html.parser')
 
         title_element = soup.select_one(

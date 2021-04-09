@@ -10,8 +10,6 @@ class RaceTrac(Enum):
         東京競馬場・阪神競馬場など
         全10場が個々のオブジェクトに対応
 
-    Args:
-        Enum (Emum): Enumを継承
     """
     SAPPORO = 1
     HAKODATE = 2
@@ -28,6 +26,14 @@ class RaceTrac(Enum):
 class RaceTracFactory:
     @staticmethod
     def create(race_track_name: str) -> RaceTrac:
+        """ 文字列からRaceTracオブジェクトを生成する
+
+        Args:
+            race_track_name (str): 競馬場の名前
+
+        Returns:
+            RaceTrac: 
+        """
         NAMES_INDEXED_BY_MARK_STR = {
             '札幌': 'SAPPORO',
             '函館': 'HAKODATE',
@@ -45,11 +51,7 @@ class RaceTracFactory:
 
 @dataclass
 class Race:
-    """レースのモデル
-
-        必要最低限の属性のみを保持したレースの基底モデル
-
-    """
+    """ 必要最低限の属性のみを保持したレースの基底モデル """
     # ブラウザURL直打ちして2着以下も取得できた年を暫定的に指定
     # 1985年はページ自体は閲覧できるが1着しか見れない（ログインすれば見れる旨は記載されていた）
     OLDEST_READABLE_YEAR = 1986
@@ -72,13 +74,6 @@ class Race:
 
 
 class Weather(Enum):
-    """天候に対応するモデル
-
-        曇 | 晴 | 雨 | 小雨 | 小雪 | 雪
-
-    Args:
-        Enum (Emum): Enumを継承
-    """
     CLOUD = 1
     FINE = 2
     RAIY = 3
@@ -90,6 +85,14 @@ class Weather(Enum):
 class WeatherFactory:
     @staticmethod
     def create(weather_name: str) -> Weather:
+        """ 文字列からWeatherオブジェクトを生成する
+
+        Args:
+            weather_name (str): 曇 | 晴 | 雨 | 小雨 | 小雪 | 雪
+
+        Returns:
+            Weather: 
+        """
         NAMES_INDEXED_BY_MARK_STR = {
             '曇': 'CLOUD',
             '晴': 'FINE',
@@ -102,11 +105,6 @@ class WeatherFactory:
 
 
 class TrackDirection(Enum):
-    """右回りか左回りかを保持するモデル
-
-    Args:
-        Enum (Emum): Enumを継承
-    """
     LEFT = 1
     RIGHT = 2
 
@@ -114,6 +112,14 @@ class TrackDirection(Enum):
 class TrackDirectionFactory:
     @staticmethod
     def create(track_direction_name: str) -> TrackDirection:
+        """文字列からTrackDirectionオブジェクトを生成する
+
+        Args:
+            track_direction_name (str): 右 | 左
+
+        Returns:
+            TrackDirection: 
+        """
         NAMES_INDEXED_BY_MARK_STR = {
             '左': 'LEFT',
             '右': 'RIGHT',
@@ -122,13 +128,6 @@ class TrackDirectionFactory:
 
 
 class TrackKind(Enum):
-    """競走種別に対応するモデル
-
-        芝 | ダート　｜ 障害　
-
-    Args:
-        Enum (Emum): Enumを継承
-    """
     GRASS = 1
     DIRT = 2
     JUMP = 3
@@ -137,6 +136,14 @@ class TrackKind(Enum):
 class TrackKindFactory:
     @staticmethod
     def create(track_kind_name: str) -> TrackKind:
+        """文字列からTrackKindオブジェクトを生成する
+
+        Args:
+            track_kind_name (str): 芝 | ダート　｜ 障害　
+
+        Returns:
+            TrackKind: 
+        """
         NAMES_INDEXED_BY_MARK_STR = {
             '芝': 'GRASS',
             'ダート': 'DIRT',
@@ -146,13 +153,6 @@ class TrackKindFactory:
 
 
 class TrackSurface(Enum):
-    """馬場状態に対応するモデル
-
-        良　稍重　重　不良　
-
-    Args:
-        Enum (Emum): Enumを継承
-    """
     GOOD_TO_FIRM = 1  # 馬場が芝だと "GOOD_TO_FIRM"で、ダートだと"Standard"らしいが前者で統一
     GOOD = 2
     YIELDING = 3  # これもダートだと "Muddy" らしいが芝の用語だけを使う
@@ -162,6 +162,14 @@ class TrackSurface(Enum):
 class TrackSurfaceFactory:
     @staticmethod
     def create(track_surface_name: str) -> TrackSurface:
+        """文字列からTrackSurfaceオブジェクトを生成する
+
+        Args:
+            track_surface_name (str): 良 | 稍重 | 重 | 不良　
+
+        Returns:
+            TrackSurface: 
+        """
         NAMES_INDEXED_BY_MARK_STR = {
             '良': 'GOOD_TO_FIRM',
             '稍重': 'GOOD',
