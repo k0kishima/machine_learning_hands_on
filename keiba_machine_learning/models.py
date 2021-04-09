@@ -179,6 +179,27 @@ class TrackSurfaceFactory:
         return TrackSurface[NAMES_INDEXED_BY_MARK_STR[track_surface_name]]
 
 
-class Gender(Enum):
+class HorseGender(Enum):
     MALE = 1
     FEMALE = 2
+    CASTRATED = 3
+
+
+class HorseGenderFactory:
+    @staticmethod
+    def create(gender_string: str) -> HorseGender:
+        """文字列からGenderオブジェクトを生成する
+
+        Args:
+            gender_string (str): 牡 | 牝 | セ
+            ※ セ は騸馬（去勢された牡馬）を意味する
+
+        Returns:
+            HorseGender
+        """
+        NAMES_INDEXED_BY_MARK_STR = {
+            '牡': 'MALE',
+            '牝': 'FEMALE',
+            'セ': 'CASTRATED',
+        }
+        return HorseGender[NAMES_INDEXED_BY_MARK_STR[gender_string]]
