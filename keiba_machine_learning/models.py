@@ -153,7 +153,19 @@ class TrackSurface(Enum):
     Args:
         Enum (Emum): Enumを継承
     """
-    GOOD_TO_FIRM = 1
+    GOOD_TO_FIRM = 1  # 馬場が芝だと "GOOD_TO_FIRM"で、ダートだと"Standard"らしいが前者で統一
     GOOD = 2
-    YIELDING = 3
-    SOFT = 4
+    YIELDING = 3  # これもダートだと "Muddy" らしいが芝の用語だけを使う
+    SOFT = 4  # 同じくダートだと "Sloppy" らしいが芝の用語だけを使う
+
+
+class TrackSurfaceFactory:
+    @staticmethod
+    def create(track_surface_name: str) -> TrackSurface:
+        NAMES_INDEXED_BY_MARK_STR = {
+            '良': 'GOOD_TO_FIRM',
+            '稍重': 'GOOD',
+            '重': 'YIELDING',
+            '不良': 'SOFT',
+        }
+        return TrackSurface[NAMES_INDEXED_BY_MARK_STR[track_surface_name]]
