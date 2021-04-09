@@ -134,6 +134,17 @@ class TrackKind(Enum):
     JUMP = 3
 
 
+class TrackKindFactory:
+    @staticmethod
+    def create(track_kind_name: str) -> TrackKind:
+        NAMES_INDEXED_BY_MARK_STR = {
+            '芝': 'GRASS',
+            'ダート': 'DIRT',
+            '障害': 'JUMP',
+        }
+        return TrackKind[NAMES_INDEXED_BY_MARK_STR[track_kind_name]]
+
+
 class TrackSurface(Enum):
     """馬場状態に対応するモデル
 
