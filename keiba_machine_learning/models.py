@@ -13,7 +13,7 @@ class RaceTrac(Enum):
     Args:
         Enum (Emum): Enumを継承
     """
-    HOKKAIDO = 1
+    SAPPORO = 1
     HAKODATE = 2
     FUKUSHIMA = 3
     NIGATA = 4
@@ -23,6 +23,24 @@ class RaceTrac(Enum):
     KYOTO = 8
     HANSHIN = 9
     KOKURA = 10
+
+
+class RaceTracFactory:
+    @staticmethod
+    def create(race_track_name: str) -> RaceTrac:
+        NAMES_INDEXED_BY_MARK_STR = {
+            '札幌': 'SAPPORO',
+            '函館': 'HAKODATE',
+            '福島': 'FUKUSHIMA',
+            '新潟': 'NIGATA',
+            '東京': 'TOKYO',
+            '中山': 'NAKAYAMA',
+            '中京': 'CHUKYO',
+            '京都': 'KYOTO',
+            '阪神': 'HANSHIN',
+            '小倉': 'KOKURA',
+        }
+        return RaceTrac[NAMES_INDEXED_BY_MARK_STR[race_track_name]]
 
 
 @dataclass
