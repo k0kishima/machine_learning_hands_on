@@ -111,6 +111,16 @@ class TrackDirection(Enum):
     RIGHT = 2
 
 
+class TrackDirectionFactory:
+    @staticmethod
+    def create(track_direction_name: str) -> TrackDirection:
+        NAMES_INDEXED_BY_MARK_STR = {
+            '左': 'LEFT',
+            '右': 'RIGHT',
+        }
+        return TrackDirection[NAMES_INDEXED_BY_MARK_STR[track_direction_name]]
+
+
 class TrackKind(Enum):
     """競走種別に対応するモデル
 
