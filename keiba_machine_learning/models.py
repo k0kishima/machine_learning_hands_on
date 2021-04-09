@@ -177,3 +177,8 @@ class TrackSurfaceFactory:
             '不良': 'SOFT',
         }
         return TrackSurface[NAMES_INDEXED_BY_MARK_STR[track_surface_name]]
+
+
+class Gender(Enum):
+    MALE = 1
+    FEMALE = 2
