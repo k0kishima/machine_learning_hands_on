@@ -31,17 +31,31 @@ class RaceInformationScraper:
         race_number_element = soup.select_one(
             '#main > div > div > div > diary_snap > div > div > dl > dt')
 
-        race_distance_by_meter = int(
-            re.search(r'(\d{4})m', text_under_the_title).group(1))
-        race_number = int(
-            re.search(r'\d+', race_number_element.get_text()).group())
+        if s := re.search(r'(\d{4})m', text_under_the_title):
+            race_distance_by_meter = int(s.group(1))
+        else:
+            raise ValueError("can't parse race distance.")
+
+        if s := re.search(r'\d+', race_number_element.get_text()):
+            race_number = int(s.group())
+        else:
+            raise ValueError("can't parse race number.")
+
         race_track_name = soup.select_one(
             '#main > div > div > div > ul > li > a.active').get_text()
+
         track_kind_mark = text_under_the_title[0]
         track_direction_mark = text_under_the_title[1]
-        track_surface_mark = re.search(
-            r'{} : (\w+)'.format(track_kind_mark), text_under_the_title).group(1)
-        weather_mark = re.search(r'天候 : (\w+)', text_under_the_title).group(1)
+
+        if s := re.search(r'{} : (\w+)'.format(track_kind_mark), text_under_the_title):
+            track_surface_mark = s.group(1)
+        else:
+            raise ValueError("can't parse track surface.")
+
+        if s := re.search(r'天候 : (\w+)', text_under_the_title):
+            weather_mark = s.group(1)
+        else:
+            raise ValueError("can't parse weather.")
 
         return {
             'title': title_element.get_text(),
