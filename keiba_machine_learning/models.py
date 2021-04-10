@@ -149,6 +149,7 @@ class TrackKindFactory:
             'ダート': 'DIRT',
             'ダ': 'DIRT',
             '障害': 'JUMP',
+            '障': 'JUMP',
         }
         return TrackKind[NAMES_INDEXED_BY_MARK_STR[track_kind_name]]
 

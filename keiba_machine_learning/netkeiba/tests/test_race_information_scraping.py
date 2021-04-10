@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 
 from keiba_machine_learning.models import RaceTrac, TrackKind, TrackDirection, TrackSurface, Weather
-from keiba_machine_learning.netkeiba.scrapers import RaceInformationScraper, DataNotFound
+from keiba_machine_learning.netkeiba.scrapers import RaceInformationScraper, DataNotFound, IncompatibleDataDetected
 from keiba_machine_learning.netkeiba.constants import ENCODING_OF_WEB_PAGE
 
 base_path = os.path.dirname(os.path.abspath(__file__))
@@ -28,10 +28,10 @@ def test_to_scrape_general_race_information():
         assert RaceInformationScraper.scrape(file) == expect_data
 
 
-def test_to_scrape_empty_page():
+def test_to_scrape_disability_race_page():
     file_path = os.path.normpath(os.path.join(
-        base_path, "./fixtures/empty_page.html"))
+        base_path, "./fixtures/disability_race_page.html"))
 
     with open(file_path, mode="r", encoding=ENCODING_OF_WEB_PAGE) as file:
-        with pytest.raises(DataNotFound):
+        with pytest.raises(IncompatibleDataDetected):
             assert RaceInformationScraper.scrape(file)

@@ -16,6 +16,10 @@ class DataNotFound(Exception):
     pass
 
 
+class IncompatibleDataDetected(Exception):
+    pass
+
+
 class RaceInformationScraper:
     @staticmethod
     def scrape(file: IO) -> RaceInformation:
@@ -55,6 +59,9 @@ class RaceInformationScraper:
             '#main > div > div > div > ul > li > a.active').get_text()
 
         track_kind_mark = text_under_the_title[0]
+        if track_kind_mark == '障':
+            raise IncompatibleDataDetected
+
         track_direction_mark = text_under_the_title[1]
 
         if s := re.search(r'天候 : (\w+)', text_under_the_title):
