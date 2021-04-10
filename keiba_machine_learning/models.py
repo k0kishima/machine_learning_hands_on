@@ -147,6 +147,7 @@ class TrackKindFactory:
         NAMES_INDEXED_BY_MARK_STR = {
             '芝': 'GRASS',
             'ダート': 'DIRT',
+            'ダ': 'DIRT',
             '障害': 'JUMP',
         }
         return TrackKind[NAMES_INDEXED_BY_MARK_STR[track_kind_name]]
