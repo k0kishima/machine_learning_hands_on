@@ -1,8 +1,8 @@
 import re
 from datetime import datetime
-from typing import IO, TypedDict
+from typing import IO, List, TypedDict
 from bs4 import BeautifulSoup
-from keiba_machine_learning.models import RaceTrac, TrackKind, TrackDirection, TrackSurface, Weather, RaceTracFactory, TrackKindFactory, TrackDirectionFactory, TrackSurfaceFactory, WeatherFactory, Gender
+from keiba_machine_learning.models import RaceTrac, TrackKind, TrackDirection, TrackSurface, Weather, RaceTracFactory, TrackKindFactory, TrackDirectionFactory, TrackSurfaceFactory, WeatherFactory, HorseGender, HorseGenderFactory
 
 # NOTE: バージョニングは必要に応じて行う
 # 例えばスクレイピング先がリニューアルされてDOMががらりと変わってしまったらこのスクリプトは使えなくなる
@@ -45,9 +45,9 @@ class RaceRecord(TypedDict):
     horse_id: int
     horse_name: str
     horse_age: int
-    horse_gender: Gender
+    horse_gender: HorseGender
     impost: float  # 斤量
-    jockey_id: int
+    jockey_id: str  # ※ "05203"のような0埋めで5桁が大半だが引退した騎手だと"z0004"みたいな変則的な書式も存在している
     jockey_name: str
     race_time: float  # タイム
     win_betting_ratio: float  # 単勝倍率
@@ -61,10 +61,10 @@ class RaceInformationScraper:
     def scrape(file: IO) -> RaceInformation:
         """
         Args:
-            file (IO): netkeibaのレース結果ページのHTMLファイルを想定している
+            file (IO): netkeibaのレース結果ページのHTMLファイル
 
         Returns:
-            RaceInformation: スクレイピング結果を返す
+            RaceInformation
         """
         soup = BeautifulSoup(file, 'html.parser')
 
@@ -98,3 +98,68 @@ class RaceInformationScraper:
             'race_number': race_number,
             'starts_at': datetime(2019, 7, 27, 9, 50),
         }
+
+
+class RaceResultScraper:
+    @staticmethod
+    def scrape(file: IO) -> List[RaceRecord]:
+        """
+        Args:
+            file (IO): netkeibaのレース結果ページのHTMLファイル
+
+        Returns:
+            List[RaceRecord]
+        """
+        soup = BeautifulSoup(file, 'html.parser')
+        race_result_table_rows = soup.find(
+            'table', attrs={'summary': 'レース結果'}).find_all('tr')
+
+        race_records = []
+
+        # 最初の要素は項目行(header)なのでスキップ
+        for row in race_result_table_rows[1:]:
+            cells = row.find_all('td')
+            order_of_placing = int(cells[0].get_text())
+            bracket_number = int(cells[1].get_text())
+            horse_number = int(cells[2].get_text())
+            horse_id = int(
+                re.search(r'horse/(\d+)', cells[3].find('a')['href']).group(1))
+            horse_name = cells[3].get_text().strip()
+            horse_age = int(cells[4].get_text()[1])
+            horse_gender = HorseGenderFactory.create(cells[4].get_text()[0])
+            impost = int(cells[5].get_text())
+            jockey_id = re.search(
+                r'jockey/(\d+)', cells[6].find('a')['href']).group(1)
+            jockey_name = cells[6].get_text().strip()
+
+            minute, second, split_second = re.findall(
+                r'^(\d{1}):(\d{2})\.(\d{1})', cells[7].get_text())[0]
+            race_time = (int(minute) * 60) + (int(second)) + \
+                (int(split_second) * 0.1)
+
+            win_betting_ratio = float(cells[12].get_text())
+            favorite_order = int(cells[13].get_text())
+
+            horse_weight, weight_change = [int(weight_data) for weight_data in re.findall(
+                r'(\d{3})\(([+-]?\d{1,2})\)', cells[14].get_text())[0]]
+
+            race_record = {
+                'order_of_placing': order_of_placing,
+                'bracket_number': bracket_number,
+                'horse_number': horse_number,
+                'horse_id': horse_id,
+                'horse_name': horse_name,
+                'horse_age': horse_age,
+                'horse_gender': horse_gender,
+                'impost': impost,
+                'jockey_id': jockey_id,
+                'jockey_name': jockey_name,
+                'race_time': race_time,
+                'win_betting_ratio': win_betting_ratio,
+                'favorite_order': favorite_order,
+                'horse_weight': horse_weight,
+                'weight_change': weight_change,
+            }
+            race_records.append(race_record)
+
+        return race_records
