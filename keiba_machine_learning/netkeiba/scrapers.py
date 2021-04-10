@@ -63,6 +63,8 @@ class RaceInformationScraper:
             raise IncompatibleDataDetected
 
         track_direction_mark = text_under_the_title[1]
+        if track_direction_mark == '直':
+            raise IncompatibleDataDetected
 
         if s := re.search(r'天候 : (\w+)', text_under_the_title):
             weather_mark = s.group(1)
