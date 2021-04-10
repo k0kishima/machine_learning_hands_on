@@ -1,12 +1,14 @@
+import pytest
 import os
+
 from keiba_machine_learning.models import HorseGender
-from keiba_machine_learning.netkeiba.scrapers import RaceResultScraper
+from keiba_machine_learning.netkeiba.scrapers import RaceResultScraper, DataNotFound
 from keiba_machine_learning.netkeiba.constants import ENCODING_OF_WEB_PAGE
 
 base_path = os.path.dirname(os.path.abspath(__file__))
 
 
-def test_to_scrape_race_result():
+def test_to_scrape_general_race_result():
     file_path = os.path.normpath(os.path.join(
         base_path, "./fixtures/201901010101.html"))
 
@@ -167,3 +169,12 @@ def test_to_scrape_race_result():
             },
         ]
         assert RaceResultScraper.scrape(file) == expect_data
+
+
+def test_to_scrape_empty_page():
+    file_path = os.path.normpath(os.path.join(
+        base_path, "./fixtures/empty_page.html"))
+
+    with open(file_path, mode="r", encoding=ENCODING_OF_WEB_PAGE) as file:
+        with pytest.raises(DataNotFound):
+            assert RaceResultScraper.scrape(file)
