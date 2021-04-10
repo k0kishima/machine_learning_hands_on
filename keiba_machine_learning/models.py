@@ -76,7 +76,7 @@ class Race:
 class Weather(Enum):
     CLOUD = 1
     FINE = 2
-    RAIY = 3
+    RAIN = 3
     LIGHT_RAIN = 4
     LIGHT_SNOW = 5
     SNOW = 6
@@ -96,7 +96,7 @@ class WeatherFactory:
         NAMES_INDEXED_BY_MARK_STR = {
             '曇': 'CLOUD',
             '晴': 'FINE',
-            '雨': 'RAINY',
+            '雨': 'RAIN',
             '小雨': 'LIGHT_RAIN',
             '小雪': 'LIGHT_SNOW',
             '雪': 'SNOW',
@@ -147,7 +147,9 @@ class TrackKindFactory:
         NAMES_INDEXED_BY_MARK_STR = {
             '芝': 'GRASS',
             'ダート': 'DIRT',
+            'ダ': 'DIRT',
             '障害': 'JUMP',
+            '障': 'JUMP',
         }
         return TrackKind[NAMES_INDEXED_BY_MARK_STR[track_kind_name]]
 

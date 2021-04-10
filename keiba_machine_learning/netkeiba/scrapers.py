@@ -2,7 +2,7 @@ import re
 from datetime import datetime
 from typing import IO, List
 from bs4 import BeautifulSoup
-from keiba_machine_learning.models import RaceTracFactory, TrackKindFactory, TrackDirectionFactory, TrackSurfaceFactory, WeatherFactory, HorseGenderFactory
+from keiba_machine_learning.models import RaceTracFactory, TrackKindFactory, TrackDirectionFactory, TrackSurfaceFactory, WeatherFactory, HorseGenderFactory, TrackSurface
 from keiba_machine_learning.types import RaceInformation, RaceRecord
 
 # NOTE: バージョニングは必要に応じて行う
@@ -13,6 +13,10 @@ from keiba_machine_learning.types import RaceInformation, RaceRecord
 
 
 class DataNotFound(Exception):
+    pass
+
+
+class IncompatibleDataDetected(Exception):
     pass
 
 
@@ -55,12 +59,12 @@ class RaceInformationScraper:
             '#main > div > div > div > ul > li > a.active').get_text()
 
         track_kind_mark = text_under_the_title[0]
-        track_direction_mark = text_under_the_title[1]
+        if track_kind_mark == '障':
+            raise IncompatibleDataDetected
 
-        if s := re.search(r'{} : (\w+)'.format(track_kind_mark), text_under_the_title):
-            track_surface_mark = s.group(1)
-        else:
-            raise ValueError("can't parse track surface.")
+        track_direction_mark = text_under_the_title[1]
+        if track_direction_mark == '直':
+            raise IncompatibleDataDetected
 
         if s := re.search(r'天候 : (\w+)', text_under_the_title):
             weather_mark = s.group(1)
@@ -73,7 +77,7 @@ class RaceInformationScraper:
             'track_kind': TrackKindFactory.create(track_kind_mark),
             'track_direction': TrackDirectionFactory.create(track_direction_mark),
             'race_distance_by_meter': race_distance_by_meter,
-            'track_surface': TrackSurfaceFactory.create(track_surface_mark),
+            'track_surface': TrackSurfaceParser.parse(text_under_the_title),
             'weather': WeatherFactory.create(weather_mark),
             'race_number': race_number,
             'starts_at': datetime(2019, 7, 27, 9, 50),
@@ -158,3 +162,22 @@ class RaceResultScraper:
             race_records.append(race_record)
 
         return race_records
+
+
+class TrackSurfaceParser:
+    @staticmethod
+    def parse(text: str) -> TrackSurface:
+        """
+        Args:
+            text (str): レース情報のテキスト
+
+            例:
+            ダ左1200m / 天候 : 曇 / ダート : 良 / 発走 : 13:10
+
+        Returns:
+            TrackSurface
+        """
+        if s := re.search(r'(芝|ダート) : (\w+)', text):
+            return TrackSurfaceFactory.create(s.group(2))
+        else:
+            raise ValueError("can't parse track surface.")
