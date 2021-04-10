@@ -12,6 +12,10 @@ from keiba_machine_learning.types import RaceInformation, RaceRecord
 # (YAGNIの原則に則って今の段階では作らない)
 
 
+class DataNotFound(Exception):
+    pass
+
+
 class RaceInformationScraper:
     @staticmethod
     def scrape(file: IO) -> RaceInformation:
@@ -23,6 +27,12 @@ class RaceInformationScraper:
             RaceInformation
         """
         soup = BeautifulSoup(file, 'html.parser')
+
+        # netkeiba側の仕様でレースデータが存在しないページにアクセスしても404をHTTPステータスコードとしてレスポンスしないので、
+        # データが存在しない掲載されていないファイルが渡ってくることも想定してここでデータがない場合の制御をする
+        race_result_table = soup.find('table', attrs={'summary': 'レース結果'})
+        if race_result_table is None:
+            raise DataNotFound
 
         title_element = soup.select_one(
             '#main > div > div > div > diary_snap > div > div > dl > dd > h1')
@@ -81,8 +91,10 @@ class RaceResultScraper:
             List[RaceRecord]
         """
         soup = BeautifulSoup(file, 'html.parser')
-        race_result_table_rows = soup.find(
-            'table', attrs={'summary': 'レース結果'}).find_all('tr')
+        race_result_table = soup.find('table', attrs={'summary': 'レース結果'})
+        if race_result_table is None:
+            raise DataNotFound
+        race_result_table_rows = race_result_table.find_all('tr')
 
         race_records = []
 
