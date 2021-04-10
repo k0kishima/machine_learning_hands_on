@@ -92,28 +92,41 @@ class RaceResultScraper:
             order_of_placing = int(cells[0].get_text())
             bracket_number = int(cells[1].get_text())
             horse_number = int(cells[2].get_text())
-            horse_id = int(
-                re.search(r'horse/(\d+)', cells[3].find('a')['href']).group(1))
+
+            if s := re.search(r'horse/(\d+)', cells[3].find('a')['href']):
+                horse_id = int(s.group(1))
+            else:
+                raise ValueError("can't parse horse id.")
+
             horse_name = cells[3].get_text().strip()
             horse_age = int(cells[4].get_text()[1])
             horse_gender = HorseGenderFactory.create(cells[4].get_text()[0])
             impost = int(cells[5].get_text())
-            jockey_id = re.search(
-                r'jockey/(\d+)', cells[6].find('a')['href']).group(1)
+
+            if s := re.search(r'jockey/(\d+)', cells[6].find('a')['href']):
+                jockey_id = s.group(1)
+            else:
+                raise ValueError("can't parse jockey id.")
+
             jockey_name = cells[6].get_text().strip()
 
-            minute, second, split_second = re.findall(
-                r'^(\d{1}):(\d{2})\.(\d{1})', cells[7].get_text())[0]
-            race_time = (int(minute) * 60) + (int(second)) + \
-                (int(split_second) * 0.1)
+            if f := re.findall(r'^(\d{1}):(\d{2})\.(\d{1})', cells[7].get_text()):
+                minute, second, split_second = [
+                    int(time_data) for time_data in f[0]]
+                race_time = (minute * 60) + second + (split_second * 0.1)
+            else:
+                raise ValueError("can't parse jockey id.")
 
             win_betting_ratio = float(cells[12].get_text())
             favorite_order = int(cells[13].get_text())
 
-            horse_weight, weight_change = [int(weight_data) for weight_data in re.findall(
-                r'(\d{3})\(([+-]?\d{1,2})\)', cells[14].get_text())[0]]
+            if f := re.findall(r'(\d{3})\(([+-]?\d{1,2})\)', cells[14].get_text()):
+                horse_weight, weight_change = [
+                    int(weight_data) for weight_data in f[0]]
+            else:
+                raise ValueError("can't parse weight data.")
 
-            race_record = {
+            race_record: RaceRecord = {
                 'order_of_placing': order_of_placing,
                 'bracket_number': bracket_number,
                 'horse_number': horse_number,
