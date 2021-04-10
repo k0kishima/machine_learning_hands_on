@@ -106,7 +106,14 @@ class RaceResultScraper:
         for row in race_result_table_rows[1:]:
             cells = row.find_all('td')
 
-            order_of_placing = int(cells[0].get_text())
+            try:
+                order_of_placing = int(cells[0].get_text())
+            except ValueError:
+                # 正常な結果として入ってくる自然数以外に
+                # 2(降) 、中、除、取 などが入ってくる
+                # 最初のものは降着とわかるが、それ以外のものはまだ意味がわかってないのでいったん記録しない
+                continue
+
             bracket_number = int(cells[1].get_text())
             horse_number = int(cells[2].get_text())
 
