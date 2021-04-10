@@ -105,6 +105,7 @@ class RaceResultScraper:
         # 最初の要素は項目行(header)なのでスキップ
         for row in race_result_table_rows[1:]:
             cells = row.find_all('td')
+
             order_of_placing = int(cells[0].get_text())
             bracket_number = int(cells[1].get_text())
             horse_number = int(cells[2].get_text())
@@ -117,7 +118,7 @@ class RaceResultScraper:
             horse_name = cells[3].get_text().strip()
             horse_age = int(cells[4].get_text()[1])
             horse_gender = HorseGenderFactory.create(cells[4].get_text()[0])
-            impost = int(cells[5].get_text())
+            impost = float(cells[5].get_text())
 
             if s := re.search(r'jockey/(\d+)', cells[6].find('a')['href']):
                 jockey_id = s.group(1)
