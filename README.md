@@ -4,7 +4,17 @@
 <br>
 テーマを競馬予想としてロジスティック回帰を行う
 
+## 動作環境
+
+- Python 3.10
+
 ## セットアップ
+
+### Rye をインストール
+
+- https://rye-up.com/guide/installation/
+
+※ 他のツールを使いたい場合はそれで代用も可能
 
 ### リポジトリを clone
 
@@ -12,29 +22,13 @@
 git clone git@github.com:k0kishima/machine_learning_hands_on.git
 ```
 
-### 仮想環境構築
-
-```bash
-cd /path/to/project
-python3 -m venv venv
-```
-
 ### パッケージインストール
 
 ```bash
-source venv/bin/activate
-pip install -r requirements.txt
+rye sync
 ```
 
 ## 運用
-
-- 事前に `venv` を有効化しておくこと
-- パスを通しておくこと
-
-```bash
-source venv/bin/activate
-export PYTHONPATH=".:$PYTHONPATH"
-```
 
 ### データの入手
 
@@ -43,6 +37,14 @@ export PYTHONPATH=".:$PYTHONPATH"
 ```bash
 python scripts/netkeiba/download_race_pages.py 2019
 ```
+
+結構時間かかるので注意
+
+```
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 8400/8400 [2:50:47<00:00,  1.22s/it]
+```
+
+### スクレイピング
 
 DataFrame を pickle で保存（素振りなので移植性や再利用性は特に気にしない）
 
@@ -55,10 +57,10 @@ python scripts/netkeiba/create_race_result_data_frame.py
 `jupyter lab` を起動しておく
 
 ```bash
-jupyter lab
+python -m jupyter lab
 ```
 
-[http://localhost:8888/](http://localhost:8888/) へアクセスし、以下のNoteBookを実行する
+[http://localhost:8888/](http://localhost:8888/) へアクセスし、以下の NoteBook を実行する
 
 [logistic_regression_exam.ipynb](./logistic_regression_exam.ipynb)
 
@@ -66,5 +68,5 @@ jupyter lab
 
 ### 参考資料
 
-* [競馬予想で始める機械学習〜完全版〜](https://zenn.dev/dijzpeb/books/848d4d8e47001193f3fb)
-* [【競馬予想AI】Pythonで正規表現を使って競馬データを加工する【機械学習】 - YouTube](https://www.youtube.com/watch?v=FPnzEgKBy8w)
+- [競馬予想で始める機械学習〜完全版〜](https://zenn.dev/dijzpeb/books/848d4d8e47001193f3fb)
+- [【競馬予想 AI】Python で正規表現を使って競馬データを加工する【機械学習】 - YouTube](https://www.youtube.com/watch?v=FPnzEgKBy8w)
