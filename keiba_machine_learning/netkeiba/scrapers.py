@@ -127,7 +127,7 @@ class RaceResultScraper:
             horse_gender = HorseGenderFactory.create(cells[4].get_text()[0])
             impost = float(cells[5].get_text())
 
-            if s := re.search(r'jockey/(\d+)', cells[6].find('a')['href']):
+            if s := re.search(r'jockey/result/recent/(\d+)', cells[6].find('a')['href']):
                 jockey_id = s.group(1)
             else:
                 raise ValueError("can't parse jockey id.")
@@ -139,7 +139,7 @@ class RaceResultScraper:
                     int(time_data) for time_data in f[0]]
                 race_time = (minute * 60) + second + (split_second * 0.1)
             else:
-                raise ValueError("can't parse jockey id.")
+                raise ValueError("can't parse race time.")
 
             win_betting_ratio = float(cells[12].get_text())
             favorite_order = int(cells[13].get_text())
