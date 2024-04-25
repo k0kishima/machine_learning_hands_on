@@ -5,145 +5,447 @@
 #   pre: false
 #   features: []
 #   all-features: false
+#   with-sources: false
 
 -e file:.
 annotated-types==0.6.0
+    # via pydantic
 anyio==4.2.0
+    # via jupyter-server
+    # via machine-learning-hands-on
 appnope==0.1.3
+    # via ipykernel
+    # via machine-learning-hands-on
 argon2-cffi==23.1.0
+    # via jupyter-server
+    # via machine-learning-hands-on
+    # via nbclassic
 argon2-cffi-bindings==21.2.0
+    # via argon2-cffi
 arrow==1.3.0
+    # via isoduration
 asttokens==2.4.1
+    # via stack-data
 async-generator==1.10
+    # via machine-learning-hands-on
 async-lru==2.0.4
+    # via jupyterlab
 attrs==23.1.0
+    # via jsonschema
+    # via machine-learning-hands-on
+    # via referencing
 autopep8==2.0.4
+    # via machine-learning-hands-on
 babel==2.14.0
+    # via jupyterlab-server
+    # via machine-learning-hands-on
 backcall==0.2.0
+    # via machine-learning-hands-on
 beautifulsoup4==4.12.2
+    # via machine-learning-hands-on
+    # via nbconvert
 bleach==6.1.0
+    # via machine-learning-hands-on
+    # via nbconvert
 blessed==1.20.0
+    # via curtsies
 blessings==1.7
+    # via machine-learning-hands-on
 bpython==0.24
+    # via machine-learning-hands-on
 certifi==2023.11.17
+    # via machine-learning-hands-on
+    # via requests
 cffi==1.16.0
+    # via argon2-cffi-bindings
+    # via machine-learning-hands-on
 chardet==5.2.0
+    # via machine-learning-hands-on
 charset-normalizer==3.3.2
+    # via requests
 comm==0.2.0
+    # via ipykernel
 curtsies==0.4.2
+    # via bpython
+    # via machine-learning-hands-on
 cwcwidth==0.1.9
+    # via bpython
+    # via curtsies
+    # via machine-learning-hands-on
 debugpy==1.8.0
+    # via ipykernel
 decorator==5.1.1
+    # via ipython
+    # via machine-learning-hands-on
 defusedxml==0.7.1
+    # via machine-learning-hands-on
+    # via nbconvert
 deprecation==2.1.0
+    # via jupyter-packaging
 entrypoints==0.4
-exceptiongroup==1.2.0
+    # via machine-learning-hands-on
 executing==2.0.1
+    # via stack-data
 fastjsonschema==2.19.0
+    # via nbformat
 flake8==6.1.0
+    # via machine-learning-hands-on
 fqdn==1.5.1
+    # via jsonschema
 greenlet==3.0.3
+    # via bpython
+    # via machine-learning-hands-on
 idna==3.6
+    # via anyio
+    # via jsonschema
+    # via machine-learning-hands-on
+    # via requests
 imbalanced-learn==0.11.0
+    # via imblearn
+    # via machine-learning-hands-on
 imblearn==0.0
+    # via machine-learning-hands-on
 iniconfig==2.0.0
+    # via machine-learning-hands-on
+    # via pytest
 ipykernel==6.27.1
+    # via jupyterlab
+    # via machine-learning-hands-on
+    # via nbclassic
 ipython==8.19.0
+    # via ipykernel
+    # via machine-learning-hands-on
 ipython-genutils==0.2.0
+    # via machine-learning-hands-on
+    # via nbclassic
 isoduration==20.11.0
+    # via jsonschema
 jedi==0.19.1
+    # via ipython
+    # via machine-learning-hands-on
 jinja2==3.1.2
+    # via jupyter-server
+    # via jupyterlab
+    # via jupyterlab-server
+    # via machine-learning-hands-on
+    # via nbclassic
+    # via nbconvert
 joblib==1.3.2
+    # via imbalanced-learn
+    # via machine-learning-hands-on
+    # via scikit-learn
 json5==0.9.14
+    # via jupyterlab-server
+    # via machine-learning-hands-on
 jsonpointer==2.4
+    # via jsonschema
 jsonschema==4.20.0
+    # via jupyter-events
+    # via jupyterlab-server
+    # via machine-learning-hands-on
+    # via nbformat
 jsonschema-specifications==2023.12.1
+    # via jsonschema
 jupyter-client==8.6.0
+    # via ipykernel
+    # via jupyter-server
+    # via machine-learning-hands-on
+    # via nbclassic
+    # via nbclient
 jupyter-core==5.5.1
+    # via ipykernel
+    # via jupyter-client
+    # via jupyter-server
+    # via jupyterlab
+    # via machine-learning-hands-on
+    # via nbclassic
+    # via nbclient
+    # via nbconvert
+    # via nbformat
 jupyter-events==0.9.0
+    # via jupyter-server
 jupyter-lsp==2.2.1
+    # via jupyterlab
 jupyter-packaging==0.12.3
+    # via machine-learning-hands-on
 jupyter-server==2.12.1
+    # via jupyter-lsp
+    # via jupyterlab
+    # via jupyterlab-server
+    # via machine-learning-hands-on
+    # via nbclassic
+    # via notebook
+    # via notebook-shim
 jupyter-server-terminals==0.5.0
+    # via jupyter-server
 jupyterlab==4.0.9
+    # via machine-learning-hands-on
+    # via notebook
 jupyterlab-pygments==0.3.0
+    # via machine-learning-hands-on
+    # via nbconvert
 jupyterlab-server==2.25.2
+    # via jupyterlab
+    # via machine-learning-hands-on
+    # via notebook
 markupsafe==2.1.3
+    # via jinja2
+    # via machine-learning-hands-on
+    # via nbconvert
 matplotlib-inline==0.1.6
+    # via ipykernel
+    # via ipython
 mccabe==0.7.0
+    # via flake8
+    # via machine-learning-hands-on
 mistune==3.0.2
+    # via machine-learning-hands-on
+    # via nbconvert
 mypy==1.8.0
+    # via machine-learning-hands-on
 mypy-extensions==1.0.0
+    # via machine-learning-hands-on
+    # via mypy
 nbclassic==1.0.0
+    # via machine-learning-hands-on
 nbclient==0.9.0
+    # via machine-learning-hands-on
+    # via nbconvert
 nbconvert==7.13.1
+    # via jupyter-server
+    # via machine-learning-hands-on
+    # via nbclassic
 nbformat==5.9.2
+    # via jupyter-server
+    # via machine-learning-hands-on
+    # via nbclassic
+    # via nbclient
+    # via nbconvert
 nest-asyncio==1.5.8
+    # via ipykernel
+    # via machine-learning-hands-on
+    # via nbclassic
 notebook==7.0.6
+    # via machine-learning-hands-on
 notebook-shim==0.2.3
+    # via jupyterlab
+    # via nbclassic
+    # via notebook
 numpy==1.26.2
+    # via imbalanced-learn
+    # via machine-learning-hands-on
+    # via pandas
+    # via scikit-learn
+    # via scipy
 overrides==7.4.0
+    # via jupyter-server
 packaging==23.2
+    # via deprecation
+    # via ipykernel
+    # via jupyter-packaging
+    # via jupyter-server
+    # via jupyterlab
+    # via jupyterlab-server
+    # via machine-learning-hands-on
+    # via nbconvert
+    # via pytest
 pandas==2.1.4
+    # via machine-learning-hands-on
 pandocfilters==1.5.0
+    # via machine-learning-hands-on
+    # via nbconvert
 parso==0.8.3
+    # via jedi
+    # via machine-learning-hands-on
 pexpect==4.9.0
+    # via ipython
+    # via machine-learning-hands-on
 pickleshare==0.7.5
+    # via machine-learning-hands-on
 platformdirs==4.1.0
+    # via jupyter-core
 pluggy==1.3.0
+    # via machine-learning-hands-on
+    # via pytest
 prometheus-client==0.19.0
+    # via jupyter-server
+    # via machine-learning-hands-on
+    # via nbclassic
 prompt-toolkit==3.0.43
+    # via ipython
+    # via machine-learning-hands-on
 psutil==5.9.7
+    # via ipykernel
 ptyprocess==0.7.0
+    # via machine-learning-hands-on
+    # via pexpect
+    # via terminado
 pure-eval==0.2.2
+    # via stack-data
 py==1.11.0
+    # via machine-learning-hands-on
 pycodestyle==2.11.1
+    # via autopep8
+    # via flake8
+    # via machine-learning-hands-on
 pycparser==2.21
+    # via cffi
+    # via machine-learning-hands-on
 pydantic==2.5.3
+    # via machine-learning-hands-on
 pydantic-core==2.14.6
+    # via pydantic
 pyflakes==3.1.0
+    # via flake8
+    # via machine-learning-hands-on
 pygments==2.17.2
+    # via bpython
+    # via ipython
+    # via machine-learning-hands-on
+    # via nbconvert
 pyparsing==3.1.1
+    # via machine-learning-hands-on
 pyrsistent==0.20.0
+    # via machine-learning-hands-on
 pytest==7.4.3
+    # via machine-learning-hands-on
 python-dateutil==2.8.2
+    # via arrow
+    # via jupyter-client
+    # via machine-learning-hands-on
+    # via pandas
 python-json-logger==2.0.7
+    # via jupyter-events
 pytz==2023.3.post1
+    # via machine-learning-hands-on
+    # via pandas
 pyxdg==0.28
+    # via bpython
+    # via machine-learning-hands-on
 pyyaml==6.0.1
+    # via jupyter-events
 pyzmq==25.1.2
+    # via ipykernel
+    # via jupyter-client
+    # via jupyter-server
+    # via machine-learning-hands-on
+    # via nbclassic
 referencing==0.32.0
+    # via jsonschema
+    # via jsonschema-specifications
+    # via jupyter-events
 requests==2.31.0
+    # via bpython
+    # via jupyterlab-server
+    # via machine-learning-hands-on
 rfc3339-validator==0.1.4
+    # via jsonschema
+    # via jupyter-events
 rfc3986-validator==0.1.1
+    # via jsonschema
+    # via jupyter-events
 rpds-py==0.15.2
+    # via jsonschema
+    # via referencing
 scikit-learn==1.3.2
+    # via imbalanced-learn
+    # via machine-learning-hands-on
 scipy==1.11.4
+    # via imbalanced-learn
+    # via machine-learning-hands-on
+    # via scikit-learn
 send2trash==1.8.2
+    # via jupyter-server
+    # via machine-learning-hands-on
+    # via nbclassic
 six==1.16.0
+    # via asttokens
+    # via bleach
+    # via blessed
+    # via blessings
+    # via machine-learning-hands-on
+    # via python-dateutil
+    # via rfc3339-validator
 sniffio==1.3.0
+    # via anyio
+    # via machine-learning-hands-on
 soupsieve==2.5
+    # via beautifulsoup4
+    # via machine-learning-hands-on
 stack-data==0.6.3
+    # via ipython
 terminado==0.18.0
+    # via jupyter-server
+    # via jupyter-server-terminals
+    # via machine-learning-hands-on
+    # via nbclassic
 testpath==0.6.0
+    # via machine-learning-hands-on
 threadpoolctl==3.2.0
+    # via imbalanced-learn
+    # via machine-learning-hands-on
+    # via scikit-learn
 tinycss2==1.2.1
+    # via nbconvert
 toml==0.10.2
-tomli==2.0.1
+    # via machine-learning-hands-on
 tomlkit==0.12.3
+    # via jupyter-packaging
 tornado==6.4
+    # via ipykernel
+    # via jupyter-client
+    # via jupyter-server
+    # via jupyterlab
+    # via machine-learning-hands-on
+    # via nbclassic
+    # via notebook
+    # via terminado
 tqdm==4.66.1
+    # via machine-learning-hands-on
 traitlets==5.14.0
+    # via comm
+    # via ipykernel
+    # via ipython
+    # via jupyter-client
+    # via jupyter-core
+    # via jupyter-events
+    # via jupyter-server
+    # via jupyterlab
+    # via machine-learning-hands-on
+    # via matplotlib-inline
+    # via nbclassic
+    # via nbclient
+    # via nbconvert
+    # via nbformat
 typed-ast==1.5.5
+    # via machine-learning-hands-on
 types-python-dateutil==2.8.19.14
+    # via arrow
 typing-extensions==4.9.0
+    # via machine-learning-hands-on
+    # via mypy
+    # via pydantic
+    # via pydantic-core
 tzdata==2023.3
+    # via pandas
 uri-template==1.3.0
+    # via jsonschema
 urllib3==2.1.0
+    # via machine-learning-hands-on
+    # via requests
 wcwidth==0.2.12
+    # via blessed
+    # via machine-learning-hands-on
+    # via prompt-toolkit
 webcolors==1.13
+    # via jsonschema
 webencodings==0.5.1
+    # via bleach
+    # via machine-learning-hands-on
+    # via tinycss2
 websocket-client==1.7.0
+    # via jupyter-server
 wheel==0.42.0
-# The following packages are considered to be unsafe in a requirements file:
+    # via jupyter-packaging
 setuptools==69.0.3
+    # via jupyter-packaging
