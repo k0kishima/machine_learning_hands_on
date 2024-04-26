@@ -19,13 +19,13 @@
 ### リポジトリを clone
 
 ```bash
-git clone git@github.com:k0kishima/machine_learning_hands_on.git
+$ git clone git@github.com:k0kishima/machine_learning_hands_on.git
 ```
 
 ### パッケージインストール
 
 ```bash
-rye sync
+$ rye sync
 ```
 
 ## 運用
@@ -35,7 +35,7 @@ rye sync
 引数は対象の年
 
 ```bash
-python scripts/netkeiba/download_race_pages.py 2019
+$ python scripts/netkeiba/download_race_pages.py 2019
 ```
 
 結構時間かかるので注意
@@ -49,7 +49,7 @@ python scripts/netkeiba/download_race_pages.py 2019
 DataFrame を pickle で保存（素振りなので移植性や再利用性は特に気にしない）
 
 ```bash
-python scripts/netkeiba/create_race_result_data_frame.py
+$ python scripts/netkeiba/create_race_result_data_frame.py
 ```
 
 ### 予想の実施
@@ -57,12 +57,16 @@ python scripts/netkeiba/create_race_result_data_frame.py
 `jupyter lab` を起動しておく
 
 ```bash
-python -m jupyter lab
+$ source .venv/bin/activate
+$ python -m jupyter lab
 ```
 
 [http://localhost:8888/](http://localhost:8888/) へアクセスし、以下の NoteBook を実行する
 
 [logistic_regression_exam.ipynb](./logistic_regression_exam.ipynb)
+
+![スクリーンショット 2024-04-26 12 53 13](https://github.com/k0kishima/machine_learning_hands_on/assets/56298669/8c230f07-0d34-4edb-a6b5-0e099ba9ff60)
+
 
 ## その他
 
